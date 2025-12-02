@@ -5,7 +5,7 @@ import appStore from "./store/appStore.js";
 
 import Navbar from "./components/Navbar.jsx";
 import LoginPage from "./pages/Loginpage.jsx";
-import ProfilePage from "./pages/ProfilePage.jsx";
+import ProfilePage from "./pages/Profilepage.jsx";
 import FeedPage from "./pages/FeedPage.jsx";
 import RequestsPage from "./pages/RequestsPage.jsx";
 import ConnectionsPage from "./pages/ConnectionsPage.jsx";
