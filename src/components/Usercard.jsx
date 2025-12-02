@@ -6,6 +6,8 @@ import { removefeed } from "../store/feedSlice.js";
 
 
 const Usercard = ({ user }) => {
+  console.log("userCard");
+  
   const dispatch = useDispatch();
   async function feedUpdate(status) {
     try {

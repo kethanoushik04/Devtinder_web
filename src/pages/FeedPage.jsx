@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { BASE_URL } from "../utils/constants.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addFeed,removefeed } from "../store/feedSlice.js";
+import { addFeed } from "../store/feedSlice.js";
 import Usercard from "../components/Usercard.jsx"
 
 const FeedPage = () => {
@@ -16,16 +16,18 @@ const FeedPage = () => {
         withCredentials: true,
       });
       disptach(addFeed(res.data));
-      disptach(removefeed())
+      // disptach(removefeed());
     } catch (err) {
       console.log(err.message);
     }
   }
   useEffect(() => {
-    // if(!feeddata){
-    feed_data();
-    // }
-  }, []);
+  feed_data();
+}, []);
+
+useEffect(() => {
+  console.log(feedata);
+}, [feedata]);
   if(!feedata || feedata.length == 0){
     return <p>no feed data avaliable</p>
   }

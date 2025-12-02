@@ -15,31 +15,34 @@ const LoginPage = () => {
   const [firstName, SetfirstName] = useState("");
   const [lastName, SetlastName] = useState("");
   const handleLoginUser = async () => {
-    try {
-      const user = await axios.post(
-        BASE_URL + "/login",
-        { emailId: email, password },
-        { withCredentials: true }
-      );
-      disptach(addUser(user.data));
-      navigate("/feed");
-    } catch (err) {
-      Seterrmsg(err?.response?.data?.message);
-    }
-  };
+  try {
+    const res = await axios.post(
+      BASE_URL + "/login",
+      { emailId: email, password },
+      { withCredentials: true }
+    );
+    disptach(addUser(res.data));
+    navigate("/feed");
+    console.log("navigate to feed Page");
+    
+  } catch (err) {
+    Seterrmsg(err?.response?.data?.message);
+  }
+};
+
   const handleSignupUser = async () => {
-    try {
-      const user = await axios.post(
-        BASE_URL + "/signup",
-        {firstName,lastName, emailId: email, password },
-        { withCredentials: true }
-      );
-      disptach(addUser(user.data.data));
-      navigate("/profile");
-    } catch (err) {
-      Seterrmsg(err?.response?.data?.message);
-    }
-  };
+  try {
+    const res = await axios.post(
+      BASE_URL + "/signup",
+      { firstName, lastName, emailId: email, password },
+      { withCredentials: true }
+    );
+    disptach(addUser(res.data));
+    navigate("/profile");
+  } catch (err) {
+    Seterrmsg(err?.response?.data?.message);
+  }
+};
 
 
   return (

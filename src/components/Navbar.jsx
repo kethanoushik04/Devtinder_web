@@ -1,23 +1,25 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { BASE_URL } from "../utils/constants.jsx";
 import { removeUser } from "../store/userSlice.js";
 // import { addFeed } from "../store/feedSlice.js";
+
 import RequestsPage from "../pages/RequestsPage.jsx";
 import { cleardata} from "../store/requestSlice.js";
 const Navbar = () => {
   const disptach = useDispatch();
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  // const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
+  if (user) console.log("User:", user);
+  
 
   async function handleLogout() {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       disptach(removeUser());
       disptach(cleardata());
-      navigate("/login");
     } catch (err) {
       console.log(err.message);
     }

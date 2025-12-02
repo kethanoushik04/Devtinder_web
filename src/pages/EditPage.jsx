@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants.jsx";
-import { addUser } from "../store/userSlice.js";
+import { updateuser } from "../store/userSlice.js";
 import Usercard from "../components/Usercard.jsx";
 
 const EditPage = ({ user }) => {
@@ -38,7 +38,7 @@ const EditPage = ({ user }) => {
       );
       console.log(res.data.data);
 
-      dispatch(addUser(res.data.data));
+      dispatch(updateuser(res.data.data));
       setshowToast(true);
 
       setTimeout(() => {

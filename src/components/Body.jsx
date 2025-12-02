@@ -1,39 +1,45 @@
 import Navbar from "./Navbar";
-import { Outlet, useNavigate } from "react-router-dom";
-import { addUser } from "../store/userSlice";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { BASE_URL } from "../utils/constants.jsx";
+import { Outlet} from "react-router-dom";
+// import { addUser } from "../store/userSlice";
+// import { useEffect } from "react";
+import {  useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import { BASE_URL } from "../utils/constants.jsx";
 
 const Body = () => {
-  const navigator = useNavigate();
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user);
+  
+  const navigate= useNavigate();
+  // const dispatch = useDispatch();
+  const {user} = useSelector((state) => state.user);
 
-  const FetchUser = async () => {
-    try {
-      const res = await axios.get(BASE_URL + "/profile/view", {
-        withCredentials: true,
-      });
-      dispatch(addUser(res.data));
-      if (location.pathname === "/") {
-        navigator("/feed");
-      }
-    } catch (err) {
-      if (err.response?.status === 401) {
-        console.log("trigger");
-        
-        navigator("/login");
-      }
-    }
-  };
+  if(user){
+    navigate("/profile");
+  }
+  else{
+    navigate("/login");
+  }
 
-  useEffect(() => {
-    if (!userData) {
-      FetchUser();
-    }
-  }, [userData]);
+  // const FetchUser = async () => {
+  //   try {
+  //     const res = await axios.get(BASE_URL + "/profile/view", {
+  //       withCredentials: true,
+  //     });
+  //     dispatch(addUser(res.data));
+  //   } catch (err) {
+  //     console.log(err.response);
+      
+  //     if (err.response?.status === 401) {
+  //       navigator("/login");
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (!userData) {
+  //     FetchUser();
+  //   }
+  // }, [userData]);
 
   return (
     <div>
